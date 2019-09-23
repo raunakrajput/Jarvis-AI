@@ -4,6 +4,8 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
+import requests
+
 
 
 engine=pyttsx3.init('sapi5')
@@ -44,6 +46,21 @@ def takeCommand():
           print("Say that again please...")
           return "Null"
      return query
+
+def currencyConverter():
+     currencyFrom=input("Enter Currency to convert From : ")
+     url = 'https://api.exchangerate-api.com/v4/latest/'+currencyFrom
+     response = requests.get(url)
+     lines = response.json()
+     for line in lines:
+          country=lines["rates"]
+     amount=int(input("Enter amount: \n"))
+     print("Enter the name of currency you want to convert this amount to? "
+      "Available options:\n")
+     [print(item) for item in country.keys()]
+     currency=input("Please enter one of these values :\n")
+     print(f"{amount} {currencyFrom} is equal to {amount*float(country[currency])} {currency}")
+
 
 if __name__=="__main__":
      wishMe()
@@ -129,12 +146,17 @@ if __name__=="__main__":
                     speak("Good Night Sir! sweet dream")
           
           
-          elif 'close it' in query:
-               speak("Are you sure ! please reply yes or no")
-               if 'yes' in query:
-                    break
-               elif 'no' in query:
-                    continue
+          elif '007 stop stop' in query:
+               break
+          
+          elif 'open ucurrency converter' in query:
+               currencyConverter()
+
+               
+          
+          
+          
+          
                
 
             
