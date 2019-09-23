@@ -4,7 +4,7 @@ import speech_recognition as sr
 import wikipedia
 import webbrowser
 import os
-import smtplib
+
 
 engine=pyttsx3.init('sapi5')
 voices=engine.getProperty('voices')
@@ -129,7 +129,17 @@ if __name__=="__main__":
                     speak("Good Night Sir! sweet dream")
           
           
-          elif 'close jarvis' in query:
-               break
+          elif 'close it' in query:
+               speak("Are you sure ! please reply yes or no")
+               if 'yes' in query:
+                    break
+               elif 'no' in query:
+                    continue
+               
+
+            
+            
+               
+               
 
            
